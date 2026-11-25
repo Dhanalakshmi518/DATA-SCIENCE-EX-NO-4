@@ -191,4 +191,5 @@ print("\nModel Accuracy (Embedded Method):", accuracy)
 
 **Conclusion:** Learned how to perform Feature Scaling and Feature Selection using Python to improve data quality and model performance. .p.pdf
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+
+       Thus the Feature Scaling and selection Executed successfully.
