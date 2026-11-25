@@ -35,6 +35,116 @@ The feature selection techniques used are:
 3.Embedded Method
 
 # CODING AND OUTPUT:
-       # INCLUDE YOUR CODING AND OUTPUT SCREENSHOTS HERE
+
+```
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler, RobustScaler
+df = pd.read_csv("bmi.csv")  
+print("Original Dataset:")
+print(df.head())
+```
+<img width="277" height="143" alt="Screenshot 2026-11-25 152454" src="https://github.com/user-attachments/assets/dce2c1f7-be54-499e-a933-89ece2811e71" />
+```
+df = df.dropna()
+df_std = df.copy()
+scaler_std = StandardScaler()
+df_std[['Height', 'Weight']] = scaler_std.fit_transform(df_std[['Height', 'Weight']])
+print("\nStandard Scaled Data:")
+print(df_std.head())
+```
+<img width="290" height="137" alt="Screenshot 2026-11-25 152511" src="https://github.com/user-attachments/assets/af604cce-db02-4a11-8c48-c5bca6deb601" />
+```
+df_minmax = df.copy()
+scaler_minmax = MinMaxScaler()
+df_minmax[['Height', 'Weight']] = scaler_minmax.fit_transform(df_minmax[['Height', 'Weight']])
+
+print("\nMin-Max Scaled Data:")
+print(df_minmax.head())
+```
+<img width="313" height="141" alt="Screenshot 2026-11-25 152521" src="https://github.com/user-attachments/assets/f41c905f-92e8-453d-8162-2b7a1cd803d2" />
+```
+df_maxabs = df.copy()
+scaler_maxabs = MaxAbsScaler()
+df_maxabs[['Height', 'Weight']] = scaler_maxabs.fit_transform(df_maxabs[['Height', 'Weight']])
+print("\nMaxAbs Scaled Data:")
+print(df_maxabs.head())
+```
+<img width="342" height="142" alt="Screenshot 2026-11-25 152529" src="https://github.com/user-attachments/assets/6cd6eaa8-952b-4cbf-a324-8ba3e9770168" />
+```
+df_robust = df.copy()
+scaler_robust = RobustScaler()
+df_robust[['Height', 'Weight']] = scaler_robust.fit_transform(df_robust[['Height', 'Weight']])
+
+print("\nRobust Scaled Data:")
+print(df_robust.head())
+print("\nFeature Scaling Completed Successfully.")
+```
+<img width="330" height="167" alt="Screenshot 2026-11-25 152537" src="https://github.com/user-attachments/assets/f9502faa-258f-4116-93f5-ea3b1b2dd148" />
+```
+import numpy as np
+import pandas as pd
+from sklearn.feature_selection import SelectKBest, chi2, f_classif, RFE, SelectFromModel
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import accuracy_score
+df = pd.read_csv("income(1) (1).csv")
+print("Dataset Preview:")
+print(df.head())
+```
+<img width="617" height="378" alt="Screenshot 2026-11-25 152549" src="https://github.com/user-attachments/assets/73a171c7-594f-4f50-80f2-062b02abb5be" />
+```
+categorical_columns = ['JobType', 'EdType', 'maritalstatus', 'occupation',
+                       'relationship', 'race', 'gender', 'nativecountry']
+
+df[categorical_columns] = df[categorical_columns].astype('category').apply(lambda x: x.cat.codes)
+if df['SalStat'].dtype == 'object':
+    df['SalStat'] = df['SalStat'].astype('category').cat.codes
+X = df.drop(columns=['SalStat'])
+y = df['SalStat']
+
+scaler = MinMaxScaler()
+X_scaled = scaler.fit_transform(X)
+
+selector_chi2 = SelectKBest(score_func=chi2, k=6)
+selector_chi2.fit(X_scaled, y)
+selected_features_chi2 = X.columns[selector_chi2.get_support()]
+print("\nChi-Square Selected:", list(selected_features_chi2))
+
+selector_anova = SelectKBest(score_func=f_classif, k=5)
+selector_anova.fit(X, y)
+selected_features_anova = X.columns[selector_anova.get_support()]
+print("\nANOVA Selected:", list(selected_features_anova))
+
+logreg = LogisticRegression(max_iter=1000)
+rfe = RFE(estimator=logreg, n_features_to_select=6)
+rfe.fit(X, y)
+selected_features_rfe = X.columns[rfe.support_]
+print("\nRFE Selected:", list(selected_features_rfe))
+```
+<img width="1026" height="61" alt="Screenshot 2026-11-25 152613" src="https://github.com/user-attachments/assets/d345e30a-6f41-4e9c-87ed-75bb9bcbf679" />
+<img width="751" height="41" alt="Screenshot 2026-11-25 152623" src="https://github.com/user-attachments/assets/cf849f9c-7067-484f-a90c-f47a3b5ae672" />
+
+```
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+embedded_selector = SelectFromModel(model, threshold='median')
+embedded_selector.fit(X, y)
+selected_features_embedded = X.columns[embedded_selector.get_support()]
+print("\nEmbedded Method Selected:", list(selected_features_embedded))
+X_train, X_test, y_train, y_test = train_test_split(
+    X[selected_features_embedded], y,
+    test_size=0.2,
+    random_state=42
+)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print("\nModel Accuracy (Embedded Method):", accuracy)
+```
+<img width="887" height="80" alt="Screenshot 2026-11-25 152632" src="https://github.com/user-attachments/assets/8e855036-39da-433d-8f54-84aae36cee2c" />
+
 # RESULT:
        # INCLUDE YOUR RESULT HERE
