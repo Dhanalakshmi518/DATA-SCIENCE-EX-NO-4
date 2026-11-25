@@ -161,5 +161,34 @@ print("\nModel Accuracy (Embedded Method):", accuracy)
 
 <img width="887" height="80" alt="Screenshot 2026-11-25 152632" src="https://github.com/user-attachments/assets/8e855036-39da-433d-8f54-84aae36cee2c" />
 
+
+# Summary:
+
+**1. Data Preprocessing**
+- Learned how to read the dataset using Pandas.
+- Understood how to clean and prepare the data.
+- Learned to handle categorical and numerical features.
+
+**2. Feature Scaling**
+- Learned Standard Scaler and MinMax Scaler.
+- Understood Maximum Absolute Scaling.
+- Learned Robust Scaler to scale data using median and interquartile range.
+
+**3. Feature Selection**
+- Understood the importance of selecting important features.
+- Learned Filter Method, Wrapper Method and Embedded Method.
+- Practiced selecting useful features from the dataset.
+
+**4. Feature Selection Techniques**
+- Learned Chi-Square and ANOVA methods.
+- Understood Recursive Feature Elimination (RFE).
+- Learned feature selection using Random Forest.
+
+**5. Model Evaluation**
+- Learned to split the dataset into training and testing data.
+- Understood how to build a Random Forest Classification model.
+- Learned to check model accuracy.
+
+**Conclusion:** Learned how to perform Feature Scaling and Feature Selection using Python to improve data quality and model performance. .p.pdf
 # RESULT:
        # INCLUDE YOUR RESULT HERE
