@@ -63,6 +63,7 @@ print("\nMin-Max Scaled Data:")
 print(df_minmax.head())
 ```
 <img width="313" height="141" alt="Screenshot 2026-11-25 152521" src="https://github.com/user-attachments/assets/f41c905f-92e8-453d-8162-2b7a1cd803d2" />
+
 ```
 df_maxabs = df.copy()
 scaler_maxabs = MaxAbsScaler()
@@ -71,6 +72,7 @@ print("\nMaxAbs Scaled Data:")
 print(df_maxabs.head())
 ```
 <img width="342" height="142" alt="Screenshot 2026-11-25 152529" src="https://github.com/user-attachments/assets/6cd6eaa8-952b-4cbf-a324-8ba3e9770168" />
+
 ```
 df_robust = df.copy()
 scaler_robust = RobustScaler()
@@ -81,6 +83,7 @@ print(df_robust.head())
 print("\nFeature Scaling Completed Successfully.")
 ```
 <img width="330" height="167" alt="Screenshot 2026-11-25 152537" src="https://github.com/user-attachments/assets/f9502faa-258f-4116-93f5-ea3b1b2dd148" />
+
 ```
 import numpy as np
 import pandas as pd
@@ -95,6 +98,7 @@ print("Dataset Preview:")
 print(df.head())
 ```
 <img width="617" height="378" alt="Screenshot 2026-11-25 152549" src="https://github.com/user-attachments/assets/73a171c7-594f-4f50-80f2-062b02abb5be" />
+
 ```
 categorical_columns = ['JobType', 'EdType', 'maritalstatus', 'occupation',
                        'relationship', 'race', 'gender', 'nativecountry']
@@ -144,6 +148,7 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("\nModel Accuracy (Embedded Method):", accuracy)
 ```
+
 <img width="887" height="80" alt="Screenshot 2026-11-25 152632" src="https://github.com/user-attachments/assets/8e855036-39da-433d-8f54-84aae36cee2c" />
 
 # RESULT:
